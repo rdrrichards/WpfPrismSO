@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace WpfPrismSO
 {
@@ -13,5 +7,22 @@ namespace WpfPrismSO
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Dispatcher.UnhandledException += OnDispatcherUnhandledException;
+
+            base.OnStartup(e);
+            Bootstrapper bs = new Bootstrapper();
+            bs.Run();
+        }
+
+
+        void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            string errorMessage = $"OUCH! An unhandled exception occurred: {e.Exception.Message}";
+            MessageBox.Show(errorMessage, "This application might suck...", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
+        }
+
     }
 }
