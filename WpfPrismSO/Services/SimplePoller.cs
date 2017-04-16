@@ -30,12 +30,19 @@ namespace WpfPrismSO.Services
                     //poll HW
                     Log.Info($"Polling...");
                     _eventAggregator.GetEvent<PollingEvent>().Publish($"Polled @ {DateTime.Now}");
+                    DoSomethingTricky();
                     Thread.Sleep(delay);
                     if (token.IsCancellationRequested)
                         break;
                 }
                 
             }, token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
+
+        private void DoSomethingTricky()
+        {
+            var ev = new OrderSelectedPayload { SelectedOrder = "Order", SelectedE32 = "Job" };
+            _eventAggregator.GetEvent<OrderSelectedEvent>().Publish(ev);
         }
 
         public void EndPolling()

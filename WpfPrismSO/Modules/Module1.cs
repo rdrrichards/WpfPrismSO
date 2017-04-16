@@ -13,7 +13,7 @@ namespace WpfPrismSO.Modules
         }
         public void Initialize()
         {
-            _poller.BeginPolling();
+            // _poller.BeginPolling();
         }
 
         ~Module1()

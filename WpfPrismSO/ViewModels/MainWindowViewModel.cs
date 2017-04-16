@@ -1,18 +1,16 @@
 ﻿using Prism.Commands;
-using Prism.Mvvm;
 using System.Windows;
-using System;
 using Prism.Events;
 using WpfPrismSO.Events;
 
 namespace WpfPrismSO.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private string _name;
         private readonly IEventAggregator _eventAggregator;
 
-        public MainWindowViewModel(IEventAggregator eventAggregator)
+        public MainWindowViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
             BoundCommand = new DelegateCommand<DragEventArgs>(DoWork);
             BoundCommand2 = new DelegateCommand(DoWork2);
@@ -20,6 +18,16 @@ namespace WpfPrismSO.ViewModels
 
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<PollingEvent>().Subscribe(s => MVFieldToBindTo = s);
+            //_eventAggregator.GetEvent<OrderSelectedEvent>().Subscribe(TestEventHandler);
+        }
+
+        private void TestEventHandler(object obj)
+        {
+            var ev = obj as OrderSelectedPayload;
+            if (ev != null)
+            {
+                MVFieldToBindTo = "IT WORKED!";
+            }
         }
 
         private void DoWork3()
@@ -36,6 +44,13 @@ namespace WpfPrismSO.ViewModels
         {
             MVFieldToBindTo = "Juicy Friut!";
         }
+
+        //protected override void DoWorkBase()
+        //{
+        //    // base.DoWorkBase();
+        //    MVFieldToBindTo = "From Concrete Class";
+
+        //}
 
         public DelegateCommand<DragEventArgs> BoundCommand { get; set; }
         public DelegateCommand BoundCommand2 { get; set; }

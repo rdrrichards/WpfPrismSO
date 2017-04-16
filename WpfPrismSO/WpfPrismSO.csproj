@@ -101,7 +101,9 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Core\Log.cs" />
+    <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="Events\Events.cs" />
+    <Compile Include="Events\OrderSelectedPayload.cs" />
     <Compile Include="Helpers\DragDropHelper.cs" />
     <Compile Include="LoggerAdapter.cs" />
     <Compile Include="Modules\Module1.cs" />

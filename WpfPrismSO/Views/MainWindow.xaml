@@ -21,5 +21,6 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>-->
         </TextBox>
+        <Button Content="Testing" Command="{Binding BoundCommandBase}"></Button>
     </StackPanel>
 </Window>
