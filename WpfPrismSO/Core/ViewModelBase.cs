@@ -13,7 +13,7 @@ using WpfPrismSO.Events;
 
 namespace WpfPrismSO
 {
-    public class ViewModelBase : BindableBase, INotifyDataErrorInfo, INavigationAware, IActiveAware
+    public class ViewModelBase : BindableBase, INotifyDataErrorInfo, INavigationAware //, IActiveAware
     {
         private string _messageToDisplay = "Ready";
         private bool _isMessageVisible = false;
@@ -51,7 +51,7 @@ namespace WpfPrismSO
             set
             {
                 _messageToDisplay = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         public bool IsMessageVisible
@@ -60,7 +60,7 @@ namespace WpfPrismSO
             set
             {
                 _isMessageVisible = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
         public bool IsBusy
@@ -69,7 +69,7 @@ namespace WpfPrismSO
             set
             {
                 _isbusy = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -85,7 +85,7 @@ namespace WpfPrismSO
         public virtual string ViewTitle { get; protected set; } // => string.Empty;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        public virtual event EventHandler IsActiveChanged;
+        // public virtual event EventHandler IsActiveChanged;
         public bool IsActive { get; set; }
 
         protected void SetErrors(string propertyName, List<string> propertyErrors)

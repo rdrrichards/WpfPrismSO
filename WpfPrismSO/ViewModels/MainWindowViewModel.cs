@@ -45,12 +45,11 @@ namespace WpfPrismSO.ViewModels
             MVFieldToBindTo = "Juicy Friut!";
         }
 
-        //protected override void DoWorkBase()
-        //{
-        //    // base.DoWorkBase();
-        //    MVFieldToBindTo = "From Concrete Class";
-
-        //}
+        protected override void DoWorkBase()
+        {
+            // base.DoWorkBase();
+            MVFieldToBindTo = "From Concrete Class";
+        }
 
         public DelegateCommand<DragEventArgs> BoundCommand { get; set; }
         public DelegateCommand BoundCommand2 { get; set; }
